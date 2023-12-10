@@ -51,9 +51,8 @@ npm install
 
 ```makefile
 PORT=5000
-MONGODB_URI=ваша_строка_подключения_к_mongodb
-JWT_ACCESS_KEY=ваш_секретный_ключ_jwt
-JWT_REFRESH_KEY=ваш_секретный_ключ_jwt
+DB_URL=ваша_строка_подключения_к_mongodb
+JWT_SECRET_KEY=ваш_секретный_ключ_jwt
 ```
 
 7. Запустить приложение сервера:
