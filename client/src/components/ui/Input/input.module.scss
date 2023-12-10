@@ -1,0 +1,20 @@
+@import '../../../style/variables.scss';
+
+.input {
+    width: 470px;
+    display: block;
+    margin-top: 25px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: $blue;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid $blue;
+
+    &::placeholder {
+        color: $blue;
+    }
+
+}

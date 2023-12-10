@@ -1,6 +1,12 @@
+import { BrowserRouter } from "react-router-dom";
+import './style/index.scss';
+import AppRouter from "./router/AppRouter";
+
 const App = () => {
     return(
-        <div>Hello World!</div>
+        <BrowserRouter>
+            <AppRouter/>
+        </BrowserRouter>
     )
 }
 
