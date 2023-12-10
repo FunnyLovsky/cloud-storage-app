@@ -4,6 +4,8 @@ import Container from "../ui/Container/Container";
 import Form from "../ui/Form/Form";
 import Input from "../ui/Input/Input";
 import { useActions, useAppSelector } from "../../store/hooks";
+import { clearError } from "../../store/reducers/user";
+import { useDispatch } from "react-redux";
 
 
 const FormReg = () => {
@@ -11,12 +13,17 @@ const FormReg = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const {registration} = useActions();
-    const {isLoading} = useAppSelector(state => state.useReducer)
+    const dispatch = useDispatch()
+    const {isLoading, error} = useAppSelector(state => state.useReducer)
 
     if(isLoading) {
         return(
             <div>Loading...</div>
         )
+    }
+
+    const clearingEror = () => {
+        dispatch(clearError())
     }
 
     return(
@@ -28,20 +35,24 @@ const FormReg = () => {
                     onChange={setName} 
                     type="text" 
                     placeholder="Введите имя..."
+                    onCLick={clearingEror}
                 />
                 <Input
                     value={email} 
                     onChange={setEmail} 
                     type="email" 
                     placeholder="Введите email..."
+                    onCLick={clearingEror}
                 />
                 <Input
                     value={password}
                     onChange={setPassword} 
                     type="password" 
                     placeholder="Введите пароль..."
+                    onCLick={clearingEror}
                 />
                 <Button onClick={() => registration(email, password, name)}>Войти</Button>
+                {error && <div style={{color: 'red', fontWeight: 'bold'}}>*{error}</div>}
             </Form>
         </Container>
     )

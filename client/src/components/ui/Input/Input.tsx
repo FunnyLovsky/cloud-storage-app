@@ -6,12 +6,14 @@ interface IInput {
     placeholder: string,
     value?: string,
     onChange?: (value: string) => void,
+    onCLick?: () => void
 }
 
-const Input: FC<IInput> = ({type, placeholder, value, onChange}) => {
+const Input: FC<IInput> = ({type, placeholder, value, onChange, onCLick}) => {
     return(
         <input
             value={value}
+            onClick={onCLick}
             onChange={
                 onChange 
                 ? (e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value) 

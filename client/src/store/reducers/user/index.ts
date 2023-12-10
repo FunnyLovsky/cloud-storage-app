@@ -21,6 +21,7 @@ const userReducer = createSlice({
     reducers: {
         userRegistration(state) {
             state.isLoading = true;
+            state.error = null;
         },
 
         userRegistrationSuccess(state) {
@@ -29,10 +30,13 @@ const userReducer = createSlice({
         userRegistrationError(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
+        },
+        clearError(state) {
+            state.error = null
         }
     }
 })
 
-export const {userRegistration, userRegistrationError, userRegistrationSuccess} = userReducer.actions
+export const {userRegistration, userRegistrationError, userRegistrationSuccess, clearError} = userReducer.actions
 
 export default userReducer.reducer

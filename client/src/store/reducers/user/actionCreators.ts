@@ -16,8 +16,15 @@ export const registration = (email: string, password: string, name: string) =>
             dispatch(userRegistrationSuccess());
             alert(response.data.message)
         } catch (e: any) {
-            dispatch(userRegistrationError(e.response.data.message))
-            alert(e.response.data.message)
+            let error = '';
+
+            if(e.response.data) {
+                error = e.response.data.message
+            } else {
+                error = e.message
+            }
+
+            dispatch(userRegistrationError(error))
         }
 }
 
