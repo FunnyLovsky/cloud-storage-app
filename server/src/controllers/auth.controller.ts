@@ -12,7 +12,7 @@ export default class AuthController {
             const errors = validationResult(req);
     
             if(!errors.isEmpty()) {
-                return res.status(400).json({message: 'Unccorect request', errors})
+                return res.status(400).json({message: 'Некорректный запрос', errors})
             }
 
             const {email, password, name} = req.body;
@@ -28,7 +28,7 @@ export default class AuthController {
             return res.status(200).json({message: 'Пользователь был создан!'})
         } catch (e: any) {
             console.log(e);
-            return res.status(500).json({message: 'Server Error'})
+            return res.status(500).json({message: 'Непрелвиденная ошибка'})
         }
     }
 
@@ -38,13 +38,13 @@ export default class AuthController {
             const user = await User.findOne({email});
 
             if(!user) {
-                return res.status(404).json({message: `User with email ${email} not found`})
+                return res.status(404).json({message: `Пользователь с email ${email} не найден`})
             }
 
             const isValidPass = await bcrypt.compare(password, String(user.password));
 
             if(!isValidPass) {
-                return res.status(400).json({message: `Password unccorect`})
+                return res.status(400).json({message: `Пароль некорректный`})
             }
 
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET_KEY!, {expiresIn: '1h'})
@@ -63,7 +63,7 @@ export default class AuthController {
 
         } catch (e: any) {
             console.log(e);
-            return res.status(500).json({message: 'Server Error'})
+            return res.status(500).json({message: 'Непредвиденная ошибка'})
         }
     }
 
@@ -72,7 +72,7 @@ export default class AuthController {
             const user = await User.findOne({_id: req.user?.id});
 
             if(!user) {
-                return res.status(400).json({message: `User not found`})
+                return res.status(400).json({message: `Пользователь не найден`})
             }
 
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET_KEY!, {expiresIn: '1h'})
@@ -91,7 +91,7 @@ export default class AuthController {
 
         } catch (e: any) {
             console.log(e);
-            return res.status(500).json({message: 'Server Error'})
+            return res.status(500).json({message: 'Непредвиденная ошибка'})
         }
     }
 }

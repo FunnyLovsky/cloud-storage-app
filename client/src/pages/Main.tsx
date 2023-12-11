@@ -1,7 +1,11 @@
+import Container from "../components/ui/Container/Container"
 
 const Main = () => {
     return(
-        <h1>Main Page</h1>
+        <Container>
+            <h1 style={{textAlign: 'center'}}>Main Page</h1>
+        </Container>
+
     )
 }
 

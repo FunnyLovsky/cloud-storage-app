@@ -8,7 +8,7 @@ import AuthLoader from "./components/ui/AuthLoader/AuthLoader";
 
 const App = () => {
     const {auth} = useActions();
-    const {isAuthLoading} = useAppSelector(state => state.useReducer)
+    const {isAuthLoading,} = useAppSelector(state => state.useReducer)
 
     useEffect(() => {
         if(localStorage.getItem('token')) {
