@@ -4,6 +4,8 @@ import User from "../models/User";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import { AuthRequest } from "../middlewares/auth";
+import FileService from "../service/fileService";
+import File from "../models/File";
 
 export default class AuthController {
 
@@ -23,8 +25,9 @@ export default class AuthController {
             }
     
             const hashPass = await bcrypt.hash(password, 3)
-    
-            await User.create({email, password: hashPass, name});
+            const user = new User({email, password: hashPass, name})
+            await user.save();
+            await FileService.createDir(new File({user: user._id, name: ''}))
             return res.status(200).json({message: 'Пользователь был создан!'})
         } catch (e: any) {
             console.log(e);
