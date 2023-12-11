@@ -19,13 +19,13 @@ export default class AuthController {
             const candidate = await User.findOne({email});
     
             if(candidate) {
-                return res.status(400).json({message: `User with email ${email} already exist`})
+                return res.status(400).json({message: `Пользователь с email ${email} уже существует!`})
             }
     
             const hashPass = await bcrypt.hash(password, 3)
     
             await User.create({email, password: hashPass, name});
-            return res.status(200).json({message: 'User was created!'})
+            return res.status(200).json({message: 'Пользователь был создан!'})
         } catch (e: any) {
             console.log(e);
             return res.status(500).json({message: 'Server Error'})

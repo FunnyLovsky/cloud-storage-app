@@ -4,6 +4,7 @@ import './style/index.scss';
 import AppRouter from "./router/AppRouter";
 import { useActions, useAppSelector } from "./store/hooks";
 import { useEffect } from "react";
+import AuthLoader from "./components/ui/AuthLoader/AuthLoader";
 
 const App = () => {
     const {auth} = useActions();
@@ -17,7 +18,7 @@ const App = () => {
     
     if(isAuthLoading) {
         return(
-            <h1>Authorization...</h1>
+            <AuthLoader/>
         )
     }
 

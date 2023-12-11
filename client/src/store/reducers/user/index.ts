@@ -6,14 +6,16 @@ interface UserState {
     isAuth: boolean,
     isLoading: boolean,
     isAuthLoading: boolean
-    error: string | null
+    userError: string | null,
+    authError: string | null,
 }
 
 const initialState: UserState = {
     currentUser: {} as IUser,
     isAuth: false,
-    error: null,
+    userError: null,
     isLoading: false,
+    authError: null,
     isAuthLoading: false
 }
 
@@ -23,7 +25,7 @@ const userReducer = createSlice({
     reducers: {
         userFetchig(state) {
             state.isLoading = true;
-            state.error = null;
+            state.userError = null;
         },
 
         userLoginSuccess(state, action: PayloadAction<IUser>) {
@@ -38,11 +40,11 @@ const userReducer = createSlice({
 
         userFetchingError(state, action: PayloadAction<string>) {
             state.isLoading = false;
-            state.error = action.payload;
+            state.userError = action.payload;
         },
 
         clearError(state) {
-            state.error = null
+            state.userError = null
         },
 
         userLogout(state) {
@@ -52,12 +54,12 @@ const userReducer = createSlice({
 
         authFetchig(state) {
             state.isAuthLoading = true;
-            state.error = null;
+            state.authError = null;
         },
 
         authFetchingError(state, action: PayloadAction<string>) {
             state.isAuthLoading = false;
-            state.error = action.payload;
+            state.authError = action.payload;
         },
 
         authFetchingSuccess(state, action: PayloadAction<IUser>) {
@@ -68,16 +70,7 @@ const userReducer = createSlice({
     }
 })
 
-export const { 
-    userFetchig, 
-    userFetchingError, 
-    userRegistrationSuccess, 
-    clearError, 
-    userLoginSuccess,
-    userLogout,
-    authFetchig,
-    authFetchingError,
-    authFetchingSuccess
-} = userReducer.actions
+
+export const actions = userReducer.actions
 
 export default userReducer.reducer
