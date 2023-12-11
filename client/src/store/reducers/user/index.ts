@@ -5,6 +5,7 @@ interface UserState {
     currentUser: IUser,
     isAuth: boolean,
     isLoading: boolean,
+    isAuthLoading: boolean
     error: string | null
 }
 
@@ -12,31 +13,71 @@ const initialState: UserState = {
     currentUser: {} as IUser,
     isAuth: false,
     error: null,
-    isLoading: false
+    isLoading: false,
+    isAuthLoading: false
 }
 
 const userReducer = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        userRegistration(state) {
+        userFetchig(state) {
             state.isLoading = true;
             state.error = null;
+        },
+
+        userLoginSuccess(state, action: PayloadAction<IUser>) {
+            state.isLoading = false;
+            state.currentUser = action.payload;
+            state.isAuth = true;
         },
 
         userRegistrationSuccess(state) {
             state.isLoading = false;
         },
-        userRegistrationError(state, action: PayloadAction<string>) {
+
+        userFetchingError(state, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
         },
+
         clearError(state) {
             state.error = null
-        }
+        },
+
+        userLogout(state) {
+            state.currentUser = {} as IUser;
+            state.isAuth = false;
+        },
+
+        authFetchig(state) {
+            state.isAuthLoading = true;
+            state.error = null;
+        },
+
+        authFetchingError(state, action: PayloadAction<string>) {
+            state.isAuthLoading = false;
+            state.error = action.payload;
+        },
+
+        authFetchingSuccess(state, action: PayloadAction<IUser>) {
+            state.isAuthLoading = false;
+            state.currentUser = action.payload;
+            state.isAuth = true;
+        },
     }
 })
 
-export const {userRegistration, userRegistrationError, userRegistrationSuccess, clearError} = userReducer.actions
+export const { 
+    userFetchig, 
+    userFetchingError, 
+    userRegistrationSuccess, 
+    clearError, 
+    userLoginSuccess,
+    userLogout,
+    authFetchig,
+    authFetchingError,
+    authFetchingSuccess
+} = userReducer.actions
 
 export default userReducer.reducer

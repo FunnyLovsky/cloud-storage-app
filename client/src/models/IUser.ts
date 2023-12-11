@@ -1,5 +1,7 @@
 export interface IUser {
     id: number,
     email: string,
-    name: string
+    name: string,
+    diskSpace: number,
+    usedSpace: number
 }

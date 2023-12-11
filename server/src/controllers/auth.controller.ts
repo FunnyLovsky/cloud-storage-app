@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 import User from "../models/User";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
+import { AuthRequest } from "../middlewares/auth";
 
 export default class AuthController {
 
@@ -14,7 +15,7 @@ export default class AuthController {
                 return res.status(400).json({message: 'Unccorect request', errors})
             }
 
-            const {email, password} = req.body;
+            const {email, password, name} = req.body;
             const candidate = await User.findOne({email});
     
             if(candidate) {
@@ -23,7 +24,7 @@ export default class AuthController {
     
             const hashPass = await bcrypt.hash(password, 3)
     
-            await User.create({email, password: hashPass});
+            await User.create({email, password: hashPass, name});
             return res.status(200).json({message: 'User was created!'})
         } catch (e: any) {
             console.log(e);
@@ -52,6 +53,35 @@ export default class AuthController {
                 token,
                 user: {
                     id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    diskSpace: user.diskSpace,
+                    usedSpace: user.usedSpace,
+                    avatat: user.avatar
+                }
+            })
+
+        } catch (e: any) {
+            console.log(e);
+            return res.status(500).json({message: 'Server Error'})
+        }
+    }
+
+    static async auth(req: AuthRequest, res: Response) {
+        try {
+            const user = await User.findOne({_id: req.user?.id});
+
+            if(!user) {
+                return res.status(400).json({message: `User not found`})
+            }
+
+            const token = jwt.sign({id: user._id}, process.env.JWT_SECRET_KEY!, {expiresIn: '1h'})
+
+            return res.status(200).json({
+                token,
+                user: {
+                    id: user._id,
+                    name: user.name,
                     email: user.email,
                     diskSpace: user.diskSpace,
                     usedSpace: user.usedSpace,

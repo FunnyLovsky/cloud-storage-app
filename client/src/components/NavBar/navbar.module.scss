@@ -20,7 +20,8 @@
         transition: .3s;
 
         &:hover {
-            color: darken($color: $blue, $amount: 15px)
+            color: darken($color: $blue, $amount: 15px);
+            cursor: pointer;
         }
     }
 
