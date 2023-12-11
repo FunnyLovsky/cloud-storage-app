@@ -16,7 +16,7 @@ const initialState: UserState = {
     userError: null,
     isLoading: false,
     authError: null,
-    isAuthLoading: false
+    isAuthLoading: true
 }
 
 const userReducer = createSlice({
@@ -67,6 +67,10 @@ const userReducer = createSlice({
             state.currentUser = action.payload;
             state.isAuth = true;
         },
+
+        authLoading(state) {
+            state.isAuthLoading = false;
+        }
     }
 })
 

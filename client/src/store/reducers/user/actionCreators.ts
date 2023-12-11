@@ -2,6 +2,7 @@ import { actions } from ".";
 import { AppDispatch } from "../../store";
 import AuthService from "../../../api/service/auth";
 
+
 const registration = (email: string, password: string, name: string) => 
     async (dispatch: AppDispatch) => {
         try {
@@ -9,6 +10,7 @@ const registration = (email: string, password: string, name: string) =>
             const data = await AuthService.registration(email, password, name);
             dispatch(actions.userRegistrationSuccess());
             console.log(data!.message)
+            dispatch(login(email, password));
         } catch (e: any) {
             dispatch(actions.userFetchingError(e.message))
         }
@@ -35,15 +37,18 @@ const logout = () =>
 
 const auth = () => 
     async (dispatch: AppDispatch) => {
-        try {
-            dispatch(actions.authFetchig());
-            const data = await AuthService.auth();
-            dispatch(actions.authFetchingSuccess(data!.user));
-            localStorage.setItem('token', data!.token)
-        } catch (e: any) {
-            dispatch(actions.authFetchingError(e.message))
-            localStorage.removeItem('token')
-        }
+
+        setTimeout(async () => {
+            try {
+                dispatch(actions.authFetchig());
+                const data = await AuthService.auth();
+                dispatch(actions.authFetchingSuccess(data!.user));
+                localStorage.setItem('token', data!.token)
+            } catch (e: any) {
+                dispatch(actions.authFetchingError(e.message))
+                localStorage.removeItem('token')
+            }
+        }, 1000);
 }
 
 
