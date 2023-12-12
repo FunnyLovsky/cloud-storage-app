@@ -2,14 +2,17 @@ import { FC } from "react";
 import style from './button.module.scss';
 
 interface IButton {
+    variant: 'primary' | 'secondary'
     children: React.ReactNode,
     onClick?: () => void,
 }
 
-const Button: FC<IButton> = ({children, onClick}) => {
+const Button: FC<IButton> = ({children, onClick, variant}) => {
+    const styles = variant === 'primary' ? style.btn_pri : style.btn_sec
+
     return(
         <button 
-            className={style.btn} 
+            className={styles} 
             onClick={onClick}
         >
             {children}

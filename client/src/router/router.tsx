@@ -1,3 +1,4 @@
+import Disk from "../pages/Disk"
 import Login from "../pages/Login"
 import Main from "../pages/Main"
 import Registration from "../pages/Registration"
@@ -10,7 +11,8 @@ interface IRoute {
 export enum RouterName {
     REGISTRATION = '/registration',
     LOGIN = '/login',
-    MAIN = '/'
+    MAIN = '/',
+    DISK = '/disk'
 }
 
 export const publicRoutes: IRoute[] = [
@@ -28,5 +30,9 @@ export const privateRoutes: IRoute[] = [
     {
         path: RouterName.MAIN,
         element: <Main/>
+    },
+    {
+        path: RouterName.DISK,
+        element: <Disk/>
     }
 ]

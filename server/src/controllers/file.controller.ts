@@ -27,4 +27,13 @@ export default class FileController{
             return res.status(400).json({message: error.message})
         }
     }
+
+    static async fethFile(req: AuthRequest, res: Response) {
+        try {
+            const files = await File.find({user: req.user?.id, parent: req.query.parent})
+            return res.status(200).json(files)
+        } catch (error: any) {
+            return res.status(500).json({message: 'Ошибка при получении файла'})
+        }
+    }
 }

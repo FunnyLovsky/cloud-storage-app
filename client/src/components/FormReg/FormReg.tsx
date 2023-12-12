@@ -53,7 +53,7 @@ const FormReg = () => {
                     placeholder="Введите пароль..."
                     onCLick={clearingEror}
                 />
-                <Button onClick={() => registration(email, password, name)}>Войти</Button>
+                <Button variant="primary" onClick={() => registration(email, password, name)}>Войти</Button>
                 {userError && <ErrorItem error={userError}/>}
             </Form>
         </Container>

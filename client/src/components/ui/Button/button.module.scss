@@ -1,6 +1,6 @@
 @import '../../../style/variables.scss';
 
-.btn {
+.btn_pri {
     background: $blue;
     color: #fff;
     font-size: 22px;
@@ -13,4 +13,28 @@
     outline: none;
     align-self: flex-end;
     margin-top: 25px;
+}
+
+.btn_sec {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 8px 10px;
+    border-radius: 20px;
+    border: 2px solid $blue;
+    color: $blue;
+    background: none;
+    transition: .3s;
+    margin-right: 10px;
+
+    &:hover {
+        background: $blue;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    &:active {
+        transform: scale(.8);
+    }
 }

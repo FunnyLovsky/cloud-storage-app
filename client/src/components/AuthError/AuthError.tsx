@@ -12,8 +12,8 @@ const AuthError = () => {
         <div className={style.inner}>
             <div className={style.item}>
                 <h2><span>&#9888;</span> {authError}</h2>
-                <Button><Link to={RouterName.REGISTRATION}>Регистрация</Link></Button>
-                <Button><Link to={RouterName.LOGIN}>Войти</Link></Button>
+                <Button variant='primary'><Link to={RouterName.REGISTRATION}>Регистрация</Link></Button>
+                <Button variant='primary'><Link to={RouterName.LOGIN}>Войти</Link></Button>
             </div>
         </div>
     )

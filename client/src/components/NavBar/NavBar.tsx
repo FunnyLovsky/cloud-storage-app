@@ -18,12 +18,12 @@ const NavBar = () => {
                 <div className={style.header}>
                     <div className={style.item}>
                         <img src={LOGO} alt="" />
-                        <h1>CLOUD STORAGE APP</h1>
+                        <Link to={RouterName.MAIN}>CLOUD STORAGE APP</Link>
                     </div>
                     {isAuth 
                         ?
                         <div className={style.item}>
-                            <h1>{currentUser.name}</h1>
+                            <Link to={RouterName.DISK}>{currentUser.name}</Link>
                             <h1 onClick={logout}>Выйти</h1>
                         </div>
                         :

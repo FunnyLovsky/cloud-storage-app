@@ -44,7 +44,7 @@ const FormLog = () => {
                     placeholder="Введите пароль..."
                     onCLick={clearingEror}
                 />
-                <Button onClick={() => login(email, password)}>Войти</Button>
+                <Button variant="primary" onClick={() => login(email, password)}>Войти</Button>
 
                 {userError && <ErrorItem error={userError}/>}
             </Form>
