@@ -12,4 +12,18 @@ export default class FileService {
         });
         return response.data
     }
+
+    static async createDir(dirID: string, name: string) {
+        const response = await axios.post<IFile>(`${API_URL}/file`, {
+            name,
+            parent: dirID,
+            type: 'dir'
+        }, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        
+        return response.data
+    }
 }

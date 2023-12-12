@@ -1,1 +1,22 @@
 @import '../../style/variables.scss';
+
+.inner {
+    margin-top: 30px;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid $blue;
+    width: 100%;
+
+    & h3 {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-left: 50px;
+    }
+}
+
+.item {
+    display: flex;
+}

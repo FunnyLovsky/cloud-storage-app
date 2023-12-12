@@ -6,5 +6,7 @@ export interface IFile {
     path: string,
     user: string,
     parent: IFile,
-    child: IFile[]
+    date: string,
+    child: IFile[],
+    _id: number
 }

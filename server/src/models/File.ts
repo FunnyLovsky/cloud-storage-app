@@ -10,6 +10,7 @@ export interface IFile {
     size: number,
     path: string,
     user: IUser,
+    date: Date,
     parent: IFile,
     child: IFile[]
 }
@@ -23,6 +24,7 @@ const File = new Schema<TFile>({
     size: {type: Number, default: 0},
     path: {type: String, default: ''},
     user: {type: ObjectId, ref: 'User'},
+    date: {type: Date, default: Date.now() },
     parent: {type: ObjectId, ref: 'File'},
     child: [{type: ObjectId, ref: 'File'}]
 })

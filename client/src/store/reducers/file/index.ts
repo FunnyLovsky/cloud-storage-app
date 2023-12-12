@@ -5,14 +5,16 @@ interface FileState {
     files: IFile[],
     currentDir: string | null,
     isLoadingFiles: boolean,
-    errorFiles: null | string
+    errorFiles: null | string,
+    modal: boolean,
 }
 
 const initialState: FileState = {
     files: [],
     currentDir: null,
     errorFiles: null,
-    isLoadingFiles: false
+    isLoadingFiles: false,
+    modal: false
 }
 
 const fileReducer = createSlice({
@@ -35,6 +37,14 @@ const fileReducer = createSlice({
 
         setCurrentDir(state, action: PayloadAction<string>) {
             state.currentDir = action.payload;
+        },
+
+        addFile(state, action: PayloadAction<IFile>) {
+            state.files.push(action.payload);
+        },
+
+        setModal(state, action: PayloadAction<boolean>) {
+            state.modal = action.payload;
         }
     }
 })

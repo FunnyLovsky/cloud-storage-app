@@ -15,6 +15,18 @@ const getFiles = (dirId: string) =>
         }
 }
 
+const createDir = (dirId: string, name: string) => 
+    async (dispatch: AppDispatch) => {
+        try {
+            dispatch(actionsFile.fileFetching());
+            const data = await FileService.createDir(dirId, name);
+            dispatch(actionsFile.addFile(data));
+        } catch (e: any) {
+            dispatch(actionsFile.fileFetchingError(e.message))
+        }
+}
+
 export const fileActionCreators = {
     getFiles,
+    createDir
 }

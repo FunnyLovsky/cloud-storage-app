@@ -1,20 +1,28 @@
+import { useDispatch } from 'react-redux';
+import Modal from '../Modal/Modal';
 import Button from '../ui/Button/Button';
 import style from './diskHeader.module.scss';
+import { actionsFile } from '../../store/reducers/file';
 
 const DiskHeader = () => {
+    const dispatch = useDispatch()
     return(
-        <div className={style.header}>
-            <div className={style.item}>
-                <Button variant='secondary'>Назад</Button>
-                <Button variant='secondary'>Создать новую папку</Button>
+        <>
+            <Modal/>
+            <div className={style.header}>
+                <div className={style.item}>
+                    <Button variant='secondary'>Назад</Button>
+                    <Button variant='secondary' onClick={() => dispatch(actionsFile.setModal(true))}>Создать новую папку</Button>
+                </div>
+                <div className={style.item}>
+                    <select name="" id="">
+                        <option value="">Имя</option>
+                        <option value="">Размер</option>
+                    </select>
+                </div>
             </div>
-            <div className={style.item}>
-                <select name="" id="">
-                    <option value="">Имя</option>
-                    <option value="">Размер</option>
-                </select>
-            </div>
-        </div>
+        </>
+
     )
 }
 

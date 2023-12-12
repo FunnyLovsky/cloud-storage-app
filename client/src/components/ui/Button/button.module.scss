@@ -13,6 +13,19 @@
     outline: none;
     align-self: flex-end;
     margin-top: 25px;
+    border: 2px solid $blue;
+    transition: .3s;
+
+    &:hover {
+        cursor: pointer;
+        border: 2px solid $blue;
+        background: none;
+        color: $blue;
+    }
+
+    &:active {
+        transform: scale(.8);
+    }
 }
 
 .btn_sec {
