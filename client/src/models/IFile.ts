@@ -8,5 +8,5 @@ export interface IFile {
     parent: IFile,
     date: string,
     child: IFile[],
-    _id: number
+    _id: string,
 }

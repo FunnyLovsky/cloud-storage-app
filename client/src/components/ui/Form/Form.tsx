@@ -8,8 +8,8 @@ interface IFrom {
 
 const Form: FC<IFrom> = ({children, onClick}) => {
     return(
-        <div className={style.reg} onClick={onClick ? (e) => e.stopPropagation() : undefined}>
-            <div className={style.form}>
+        <div className={style.reg} >
+            <div className={style.form} onClick={onClick ? (e) => e.stopPropagation() : undefined}>
                 {children}
             </div>
         </div>

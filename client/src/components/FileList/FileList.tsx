@@ -1,10 +1,11 @@
 import { useAppSelector } from '../../store/hooks';
 import File from '../ui/File/File';
+import FileLoader from '../ui/FileLoader/FileLoader';
 import style from './fileList.module.scss';
 
 
 const FileList = () => {
-    const {files} = useAppSelector(state => state.fileReducer)
+    const {files, isLoadingFiles} = useAppSelector(state => state.fileReducer)
 
     return(
         <div>
@@ -17,9 +18,15 @@ const FileList = () => {
                     <h3>Размер</h3>
                 </div>
             </div>
-            {files.map(file =>
-                <File key={file._id} file={file}/>    
-            )}
+
+            {!isLoadingFiles 
+                ? 
+                files.map(file =>
+                    <File key={file._id} file={file}/>    
+                )
+                :
+                <FileLoader/>
+            }
         </div>
 
     )

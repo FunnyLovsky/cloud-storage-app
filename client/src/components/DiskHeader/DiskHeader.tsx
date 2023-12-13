@@ -5,13 +5,18 @@ import style from './diskHeader.module.scss';
 import { actionsFile } from '../../store/reducers/file';
 
 const DiskHeader = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+
+    const backToDir = () => {
+        dispatch(actionsFile.delToStack())
+    }
     return(
         <>
             <Modal/>
             <div className={style.header}>
                 <div className={style.item}>
-                    <Button variant='secondary'>Назад</Button>
+                    <Button variant='secondary' onClick={backToDir}>Назад</Button>
                     <Button variant='secondary' onClick={() => dispatch(actionsFile.setModal(true))}>Создать новую папку</Button>
                 </div>
                 <div className={style.item}>

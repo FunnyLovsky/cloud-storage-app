@@ -12,7 +12,7 @@ export interface IFile {
     user: IUser,
     date: Date,
     parent: IFile,
-    child: IFile[]
+    child: IFile[],
 }
 
 export type TFile = IFile & Document<IFile>
