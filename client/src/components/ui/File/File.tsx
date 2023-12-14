@@ -4,25 +4,24 @@ import style from './file.module.scss';
 import FILE from '../../../assets/icons/file.svg';
 import DIR from '../../../assets/icons/dir.svg';
 import Button from '../Button/Button';
-import { useDispatch } from 'react-redux';
-import { actionsFile } from '../../../store/reducers/file';
-import { useAppSelector } from '../../../store/hooks';
+import { useActions, useAppSelector } from '../../../store/hooks';
 
 interface FileProps {
     file: IFile
 }
 
 const File: FC<FileProps> = ({file}) => {
-    const dispatch = useDispatch();
-    const {currentDir} = useAppSelector(state => state.fileReducer)
+    const {openDirHandler} = useActions()
+    const {currentDir, path} = useAppSelector(state => state.fileReducer);
 
-    const openDirHandler = () => {
-        dispatch(actionsFile.addToStack(currentDir!));
-        dispatch(actionsFile.setCurrentDir(file._id))
+    const openDir = () => {
+        if(file.type === 'dir') {
+            openDirHandler(currentDir!, file, path)
+        } 
     }
 
     return(
-        <div className={style.file} onClick={file.type === 'dir' ? () => openDirHandler() : undefined}>
+        <div className={style.file} onClick={openDir}>
             <div className={style.item}>
                 <img src={file.type === 'dir' ? DIR : FILE} alt="" />
                 <div className="name">{file.name}</div>

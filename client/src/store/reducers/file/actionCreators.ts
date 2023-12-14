@@ -1,5 +1,6 @@
 import { actionsFile } from ".";
 import FileService from "../../../api/service/file";
+import { IFile } from "../../../models/IFile";
 import { AppDispatch } from "../../store";
 
 
@@ -27,12 +28,23 @@ const createDir = (dirId: string | null, name: string) =>
         }
 }
 
-const backToDir = () => {
-    
+const backToDir = () => 
+    (dispatch: AppDispatch) => {
+        dispatch(actionsFile.delToStack())
+        dispatch(actionsFile.popPath())
+}
+
+const openDirHandler= (currentDir: string, file: IFile, path: string) => 
+    (dispatch: AppDispatch) => {
+        dispatch(actionsFile.addToStack(currentDir));
+        dispatch(actionsFile.setCurrentDir(file._id))
+        dispatch(actionsFile.addPath(path));
+        dispatch(actionsFile.setPath(file.path))
 }
 
 export const fileActionCreators = {
     getFiles,
     createDir,
-    backToDir
+    backToDir,
+    openDirHandler
 }

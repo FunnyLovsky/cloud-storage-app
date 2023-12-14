@@ -7,7 +7,9 @@ interface FileState {
     isLoadingFiles: boolean,
     errorFiles: null | string,
     modal: boolean,
-    dirStack: string[]
+    dirStack: string[],
+    path: string,
+    pathStack: string[]
 }
 
 const initialState: FileState = {
@@ -16,7 +18,9 @@ const initialState: FileState = {
     errorFiles: null,
     isLoadingFiles: false,
     modal: false,
-    dirStack: []
+    dirStack: [],
+    pathStack: [],
+    path: ''
 }
 
 const fileReducer = createSlice({
@@ -59,6 +63,18 @@ const fileReducer = createSlice({
 
         delToStack(state) {
             state.currentDir = state.dirStack.pop() || null;
+        },
+
+        addPath(state, action: PayloadAction<string>) {
+            state.pathStack.push(action.payload);
+        },
+
+        popPath(state) {
+            state.path = state.pathStack.pop() || '';
+        },
+
+        setPath(state, action: PayloadAction<string>) {
+            state.path = action.payload
         }
 
     }

@@ -3,14 +3,14 @@ import Modal from '../Modal/Modal';
 import Button from '../ui/Button/Button';
 import style from './diskHeader.module.scss';
 import { actionsFile } from '../../store/reducers/file';
+import { useActions, useAppSelector } from '../../store/hooks';
 
 const DiskHeader = () => {
     const dispatch = useDispatch();
+    const {currentUser} = useAppSelector(state => state.useReducer);
+    const {path} = useAppSelector(state => state.fileReducer);
+    const {backToDir} = useActions()
 
-
-    const backToDir = () => {
-        dispatch(actionsFile.delToStack())
-    }
     return(
         <>
             <Modal/>
@@ -26,6 +26,7 @@ const DiskHeader = () => {
                     </select>
                 </div>
             </div>
+            <h3>{currentUser.name}/{path}</h3>
         </>
 
     )

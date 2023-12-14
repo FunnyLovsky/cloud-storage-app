@@ -5,7 +5,14 @@ import style from './fileList.module.scss';
 
 
 const FileList = () => {
-    const {files, isLoadingFiles} = useAppSelector(state => state.fileReducer)
+    const {files, isLoadingFiles} = useAppSelector(state => state.fileReducer);
+    const mapFiles = () => {
+        if(files.length > 0) {
+            return files.map(file => <File key={file._id} file={file}/>)
+        } else {
+            return <h1 style={{textAlign: 'center'}}>Упс! Похоже тут нет файлов :(</h1>
+        }
+    }
 
     return(
         <div>
@@ -19,14 +26,13 @@ const FileList = () => {
                 </div>
             </div>
 
-            {!isLoadingFiles 
-                ? 
-                files.map(file =>
-                    <File key={file._id} file={file}/>    
-                )
-                :
+            {isLoadingFiles && (
                 <FileLoader/>
-            }
+            )}
+
+            {!isLoadingFiles && (
+                mapFiles()
+            )}
         </div>
 
     )
