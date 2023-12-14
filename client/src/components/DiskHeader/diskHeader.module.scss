@@ -8,3 +8,27 @@
     margin-top: 50px;
     padding: 0 15px;
 }
+
+.item {
+    display: flex;
+    align-items: center;
+}
+
+.upload {
+   & input {
+        display: none;
+   }
+
+   & label {
+        border: 3px dashed $blue;
+        padding: 5px 8px;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover {
+            background: $blue;
+            color: #fff
+        }
+   }
+}

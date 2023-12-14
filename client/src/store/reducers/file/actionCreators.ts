@@ -42,9 +42,29 @@ const openDirHandler= (currentDir: string, file: IFile, path: string) =>
         dispatch(actionsFile.setPath(file.path))
 }
 
+const uploadFile = (dirId: string | null, file: any) => 
+    async (dispatch: AppDispatch) => {
+        try {
+            dispatch(actionsFile.fileFetching());
+            const formData = new FormData();
+            formData.append('file', file)
+
+            if(dirId) {
+                formData.append('parent', dirId);
+            }
+            const data = await FileService.uploadFile(formData);
+            dispatch(actionsFile.addFile(data));
+            dispatch(actionsFile.addFileSuccess());
+        } catch (e: any) {
+            dispatch(actionsFile.fileFetchingError(e.message))
+        }
+}
+
+
 export const fileActionCreators = {
     getFiles,
     createDir,
     backToDir,
-    openDirHandler
+    openDirHandler,
+    uploadFile
 }

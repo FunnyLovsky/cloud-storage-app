@@ -9,7 +9,10 @@ import fileUpload from "express-fileupload";
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(fileUpload({}))
+app.use(fileUpload({
+    defCharset: 'utf8',
+    defParamCharset: 'utf8'
+}))
 app.use(cors({
     origin: '*'
 }))

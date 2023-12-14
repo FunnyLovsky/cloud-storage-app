@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios, {AxiosProgressEvent} from "axios";
 import { API_URL } from "../constans";
 import { IFile } from "../../models/IFile";
+
 
 export default class FileService {
     static async getFiles(dirID: string | null)  {
@@ -21,6 +22,20 @@ export default class FileService {
         }, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        
+        return response.data
+    }
+
+    static async uploadFile(formData: FormData) {
+        const response = await axios.post<IFile>(`${API_URL}/upload`, formData, {
+            headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+            onUploadProgress: (progressEvent: AxiosProgressEvent) => {
+                if(progressEvent.total) {
+                    const percentCompleted = Math.floor((progressEvent.loaded * 100 ) / progressEvent.total);
+                    console.log('loading:', percentCompleted)
+                }
             }
         });
         
