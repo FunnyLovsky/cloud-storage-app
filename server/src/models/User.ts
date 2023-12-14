@@ -1,4 +1,4 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, Types, Document } from "mongoose";
 import { IFile } from "./File";
  
 export const ObjectId = Types.ObjectId;
@@ -14,7 +14,9 @@ export interface IUser{
     files: IFile[]
 }
 
-const User = new Schema({
+type TUser = IUser & Document<IUser>
+
+const User = new Schema<TUser>({
     email: {type: String, required: true, unique: true},
     name: {type: String, required: true},
     password: {type: String, required: true},

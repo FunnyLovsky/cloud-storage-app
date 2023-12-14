@@ -4,9 +4,12 @@ import 'dotenv/config';
 import cors from 'cors'
 import authRouter from "./routes/auth.routes";
 import fileRouter from "./routes/file.routes";
+import fileUpload from "express-fileupload";
 
 const app = express();
 const PORT = process.env.PORT;
+
+app.use(fileUpload({}))
 app.use(cors({
     origin: '*'
 }))

@@ -3,6 +3,9 @@ import File from "../models/File";
 import User from "../models/User";
 import FileService from "../service/fileService";
 import { AuthRequest } from "../middlewares/auth";
+import { UploadedFile } from "express-fileupload";
+import path from "path";
+import fs from "fs";
 
 
 export default class FileController{
@@ -34,6 +37,58 @@ export default class FileController{
             return res.status(200).json(files)
         } catch (error: any) {
             return res.status(500).json({message: 'Ошибка при получении файла'})
+        }
+    }
+
+    static async uploadFile(req: AuthRequest, res: Response) {
+        try {
+            const files = req.files?.file;
+            let file = {} as UploadedFile;
+            let pathFile;
+
+            if(!Array.isArray(files)) {
+                file = files as UploadedFile
+            }
+            
+            const parent = await File.findOne({user: req.user?.id, _id: req.body.parent});
+            const user = await User.findOne({_id: req.user?.id});
+
+            if(user!.usedSpace + file.size > user!.diskSpace) {
+                return res.status(400).json({message: 'На диске нет свободного места'})
+            }
+
+            user!.usedSpace += file.size;
+
+            if(parent) {
+                pathFile = path.resolve(__dirname, '..', 'files', `${user?.id}`, `${parent.path}`, `${file.name}`)
+            } else {
+                pathFile = path.resolve(__dirname, '..', 'files', `${user?.id}`, `${file.name}`)
+            }
+
+            if(fs.existsSync(pathFile)) {
+                return res.status(400).json({message: 'Файл уже создан'})
+            }
+            
+            file.mv(pathFile);
+
+            const type = file.name.split('.').pop();
+
+            const dbFile = new File({
+                name: file.name,
+                type,
+                size: file.size,
+                path: parent?.path,
+                parent: parent?.id,
+                user: user?.id
+            })
+
+            await dbFile.save()
+            await user?.save();
+
+            return res.status(200).json(dbFile);
+            
+        } catch (error: any) {
+            return res.status(500).json({message: 'Ошибка при загрузки файла'})
         }
     }
 }
