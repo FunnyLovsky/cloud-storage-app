@@ -91,4 +91,19 @@ export default class FileController{
             return res.status(500).json({message: 'Ошибка при загрузки файла'})
         }
     }
+
+    static async downloadFile(req: AuthRequest, res: Response) {
+        try {
+            const file = await File.findOne({_id: req.query.id, user: req.user?.id});
+            const pathFile = path.resolve(__dirname, '..', 'files', `${req.user?.id}`, `${file?.path}`, `${file?.name}`);
+            
+            if(fs.existsSync(pathFile)) {
+                return res.status(200).download(pathFile, file!.name);
+            }
+
+            return res.status(400).json({message: 'Ошибка при скачивании файла'})
+        } catch (error) {
+            return res.status(500).json({message: 'Ошибка при скачивании файла'})
+        }
+    }
 }

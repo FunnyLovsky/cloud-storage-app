@@ -60,11 +60,34 @@ const uploadFile = (dirId: string | null, file: any) =>
         }
 }
 
+const downloadFile = (file: IFile) => 
+    async (dispatch: AppDispatch) => {
+        try {
+            dispatch(actionsFile.fileFetching());
+            const response = await FileService.downloadFile(file);
+
+            if(response.ok) {
+                const blob = await response.blob();
+                const downloadURL = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = downloadURL;
+                link.download = file.name;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            dispatch(actionsFile.addFileSuccess());
+        } catch (e: any) {
+            dispatch(actionsFile.fileFetchingError(e.message))
+        }
+}
+
 
 export const fileActionCreators = {
     getFiles,
     createDir,
     backToDir,
     openDirHandler,
-    uploadFile
+    uploadFile,
+    downloadFile
 }

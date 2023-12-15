@@ -41,4 +41,12 @@ export default class FileService {
         
         return response.data
     }
+
+    static async downloadFile(file: IFile) {
+        return await fetch(`${API_URL}/download?id=${file._id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+    }
 }

@@ -14,7 +14,7 @@ interface FileProps {
 }
 
 const File: FC<FileProps> = ({file}) => {
-    const {openDirHandler} = useActions()
+    const {openDirHandler, downloadFile} = useActions()
     const {currentDir, path} = useAppSelector(state => state.fileReducer);
 
     const openDir = () => {
@@ -38,6 +38,10 @@ const File: FC<FileProps> = ({file}) => {
         }
     }
 
+    const downloadFileHandler = () => {
+        downloadFile(file)
+    }
+
     return(
         <div className={style.file} onClick={openDir}>
             <div className={style.item}>
@@ -48,7 +52,9 @@ const File: FC<FileProps> = ({file}) => {
                 <div className="date">{file.date.slice(0, 10)}</div>
                 <div className="size">{file.size} b</div>
                 <div className={style.buttons}>
-                    <Button variant='secondary'>DownLoad</Button>
+                    {file.type !== 'dir' && (
+                        <Button variant='secondary' onClick={downloadFileHandler}>DownLoad</Button>
+                    )}
                     <Button variant='secondary'>Delete</Button>
                 </div>
             </div>
