@@ -24,12 +24,16 @@ const File: FC<FileProps> = ({file}) => {
     }
 
     const getIcon = () => {
+        if(file.type)
         switch (file.type) {
             case 'dir':
                 return DIR;
-            case 'mp3' || 'wav':
+            case 'mp3':
+            case 'wav':
                 return AUDIO;   
-            case 'png' || 'jpeg' || 'jpg':
+            case 'jpg':
+            case 'png':
+            case 'jpeg':
                 return IMG;
             case 'mp4':
                 return VIDEO    

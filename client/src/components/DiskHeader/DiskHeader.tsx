@@ -55,7 +55,7 @@ const DiskHeader = () => {
                     <Modal/>
                     <div className={style.header}>
                         <div className={style.item}>
-                            <Button variant='secondary' onClick={backToDir}>Назад</Button>
+                            {currentDir && (<Button variant='secondary' onClick={backToDir}>Назад</Button>)}
                             <Button variant='secondary' onClick={() => dispatch(actionsFile.setModal(true))}>Создать новую папку</Button>
                             <div className={style.upload}>
                                 <label htmlFor="upload">Загрузить файл</label>

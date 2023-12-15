@@ -1,6 +1,7 @@
 import { actionsFile } from ".";
 import FileService from "../../../api/service/file";
 import { IFile } from "../../../models/IFile";
+import { sortFiles } from "../../../utils/sortFiles";
 import { AppDispatch } from "../../store";
 
 
@@ -9,8 +10,8 @@ const getFiles = (dirId: string) =>
         try {
             dispatch(actionsFile.fileFetching());
             const data = await FileService.getFiles(dirId);
-            dispatch(actionsFile.fileFetchingSuccess(data));
-            console.log(data)
+            dispatch(actionsFile.fileFetchingSuccess(sortFiles(data)));
+            console.log(sortFiles(data))
         } catch (e: any) {
             dispatch(actionsFile.fileFetchingError(e.message))
         }
