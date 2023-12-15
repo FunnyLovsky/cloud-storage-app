@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { useActions, useAppSelector } from "../store/hooks";
 import Container from "../components/ui/Container/Container";
 import DiskHeader from "../components/DiskHeader/DiskHeader";
-import FileList from "../components/FileList/FileList";
-
 
 const Disk = () => {
 
@@ -18,8 +16,7 @@ const Disk = () => {
 
     return(
         <Container>
-            <DiskHeader/>
-            <FileList/>
+            <DiskHeader/> 
         </Container>
     )
 }

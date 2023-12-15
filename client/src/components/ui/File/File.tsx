@@ -3,6 +3,9 @@ import { IFile } from '../../../models/IFile';
 import style from './file.module.scss';
 import FILE from '../../../assets/icons/file.svg';
 import DIR from '../../../assets/icons/dir.svg';
+import IMG from '../../../assets/icons/img.svg';
+import AUDIO from '../../../assets/icons/music.svg';
+import VIDEO from '../../../assets/icons/video.svg';
 import Button from '../Button/Button';
 import { useActions, useAppSelector } from '../../../store/hooks';
 
@@ -20,10 +23,25 @@ const File: FC<FileProps> = ({file}) => {
         } 
     }
 
+    const getIcon = () => {
+        switch (file.type) {
+            case 'dir':
+                return DIR;
+            case 'mp3' || 'wav':
+                return AUDIO;   
+            case 'png' || 'jpeg' || 'jpg':
+                return IMG;
+            case 'mp4':
+                return VIDEO    
+            default:
+                return FILE
+        }
+    }
+
     return(
         <div className={style.file} onClick={openDir}>
             <div className={style.item}>
-                <img src={file.type === 'dir' ? DIR : FILE} alt="" />
+                <img src={getIcon()} alt="" />
                 <div className="name">{file.name}</div>
             </div>
             <div className={style.item}>

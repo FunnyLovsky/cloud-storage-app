@@ -32,3 +32,14 @@
         }
    }
 }
+
+.drop_area {
+    width: 100%;
+    border: 5px dashed $blue;
+    height: calc(100vh - 50px - 40px);
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
