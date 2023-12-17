@@ -12,3 +12,4 @@
 # misc
 /server/.env
 
+/server/src/files
