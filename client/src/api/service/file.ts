@@ -3,6 +3,7 @@ import { API_URL } from "../constans";
 import { IFile } from "../../models/IFile";
 
 
+
 export default class FileService {
     static async getFiles(dirID: string | null)  {
         const params = dirID ? `?parent=${dirID}` : '';
@@ -48,5 +49,14 @@ export default class FileService {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         })
+    }
+
+    static async deleteFile(id: string) {
+        const response = await axios.delete(`${API_URL}/delete?id=${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        return response.data; 
     }
 }
