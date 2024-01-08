@@ -45,6 +45,7 @@ export default class FileController{
             const files = req.files?.file;
             let file = {} as UploadedFile;
             let pathFile;
+            let filePath = file.name;
 
             if(!Array.isArray(files)) {
                 file = files as UploadedFile
@@ -73,11 +74,15 @@ export default class FileController{
 
             const type = file.name.split('.').pop();
 
+            if(parent) {
+                filePath = `${parent.path}/${file.name}`
+            }
+
             const dbFile = new File({
                 name: file.name,
                 type,
                 size: file.size,
-                path: parent?.path,
+                path: filePath,
                 parent: parent?.id,
                 user: user?.id
             })
@@ -104,6 +109,19 @@ export default class FileController{
             return res.status(400).json({message: 'Ошибка при скачивании файла'})
         } catch (error) {
             return res.status(500).json({message: 'Ошибка при скачивании файла'})
+        }
+    }
+
+    static async deleteFile(req: AuthRequest, res: Response) {
+        try {
+            const file = await File.findOne({_id: req.query.id, user: req.user?.id});
+            
+            if(!file) {
+                return res.status(400).json({message: 'Файл не был найден'})
+            }
+
+        } catch (error) {
+            return res.status(500).json({message: 'Ошибка при удалении файла'})
         }
     }
 }
