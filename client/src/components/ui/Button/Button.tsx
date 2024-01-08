@@ -4,7 +4,7 @@ import style from './button.module.scss';
 interface IButton {
     variant: 'primary' | 'secondary'
     children: React.ReactNode,
-    onClick?: () => void,
+    onClick?: (e: React.MouseEvent) => void,
 }
 
 const Button: FC<IButton> = ({children, onClick, variant}) => {

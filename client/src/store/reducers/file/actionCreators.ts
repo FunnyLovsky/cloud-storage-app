@@ -83,6 +83,20 @@ const downloadFile = (file: IFile) =>
         }
 }
 
+const deleteFile = (file: IFile) => 
+    async (dispatch: AppDispatch) => {
+        try {
+            dispatch(actionsFile.fileFetching());
+
+            const response = await FileService.deleteFile(file);
+            dispatch(actionsFile.deleteFile(file._id))
+            dispatch(actionsFile.addFileSuccess());
+            console.log(response.message)
+        } catch (e: any) {
+            dispatch(actionsFile.fileFetchingError(e.message))
+        }
+}
+
 
 export const fileActionCreators = {
     getFiles,
@@ -90,5 +104,6 @@ export const fileActionCreators = {
     backToDir,
     openDirHandler,
     uploadFile,
-    downloadFile
+    downloadFile,
+    deleteFile
 }

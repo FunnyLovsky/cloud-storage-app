@@ -9,7 +9,7 @@ type Tvalue = {
 export default class FileService {
 
     static createDir(file: TFile) {
-        const filePath = path.resolve(__dirname, '..', 'files', `${file.user}`, `${file.path}`)
+        const filePath = this.getPath(file);
         return new Promise((resolve: (value: Tvalue) => void, reject: (value: Tvalue) => void) => {
             try { 
                 if(!fs.existsSync(filePath)) {
@@ -28,14 +28,14 @@ export default class FileService {
         try {
             const path = this.getPath(file);
 
-            if(file.type == 'dir') {
+            if(file.type === 'dir') {
                 fs.rmdirSync(path)
             } else {
-                fs.unlinkSync(path)
+                fs.unlinkSync(path + '/' + file.name)
             }
 
-        } catch (error) {
-            throw Error('Error')
+        } catch (error: any) {
+            throw Error(error.message)
         }
     }
 

@@ -51,8 +51,8 @@ export default class FileService {
         })
     }
 
-    static async deleteFile(id: string) {
-        const response = await axios.delete(`${API_URL}/delete?id=${id}`, {
+    static async deleteFile(file: IFile) {
+        const response = await axios.delete(`${API_URL}/file?id=${file._id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

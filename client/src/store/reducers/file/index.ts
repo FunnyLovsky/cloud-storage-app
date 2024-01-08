@@ -75,6 +75,10 @@ const fileReducer = createSlice({
 
         setPath(state, action: PayloadAction<string>) {
             state.path = action.payload
+        },
+
+        deleteFile(state, action: PayloadAction<string>) {
+           state.files = state.files.filter(file => file._id !== action.payload);
         }
 
     }

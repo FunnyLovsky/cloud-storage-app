@@ -14,7 +14,7 @@ interface FileProps {
 }
 
 const File: FC<FileProps> = ({file}) => {
-    const {openDirHandler, downloadFile} = useActions()
+    const {openDirHandler, downloadFile, deleteFile} = useActions()
     const {currentDir, path} = useAppSelector(state => state.fileReducer);
 
     const openDir = () => {
@@ -42,12 +42,18 @@ const File: FC<FileProps> = ({file}) => {
         }
     }
 
-    const downloadFileHandler = () => {
+    const downloadFileHandler = (e: React.MouseEvent) => {
+        e.stopPropagation()
         downloadFile(file)
     }
 
+    const deleteHandler = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        deleteFile(file)
+    }
+
     return(
-        <div className={style.file} onClick={openDir}>
+        <div className={style.file} onClick={openDir} style={{cursor: file.type === 'dir' ? 'pointer' : 'auto'}}>
             <div className={style.item}>
                 <img src={getIcon()} alt="" />
                 <div className="name">{file.name}</div>
@@ -57,9 +63,9 @@ const File: FC<FileProps> = ({file}) => {
                 <div className="size">{file.size} b</div>
                 <div className={style.buttons}>
                     {file.type !== 'dir' && (
-                        <Button variant='secondary' onClick={downloadFileHandler}>DownLoad</Button>
+                        <Button variant='secondary' onClick={(e: React.MouseEvent) => downloadFileHandler(e)}>DownLoad</Button>
                     )}
-                    <Button variant='secondary'>Delete</Button>
+                    <Button variant='secondary' onClick={(e: React.MouseEvent) => deleteHandler(e)}>Delete</Button>
                 </div>
             </div>
         </div>

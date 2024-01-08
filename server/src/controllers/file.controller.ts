@@ -123,8 +123,8 @@ export default class FileController{
             FileService.deleteFile(file);
             await file.deleteOne();
             return res.status(200).json({message: 'Файл был удален'})
-        } catch (error) {
-            return res.status(500).json({message: 'Ошибка при удалении файла'})
+        } catch (error: any) {
+            return res.status(500).json({message: 'Ошибка при удалении файла: ' + error.message})
         }
     }
 }
