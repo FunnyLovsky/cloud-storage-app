@@ -23,4 +23,23 @@ export default class FileService {
             }
         })
     }
+
+    static deleteFile(file: TFile) {
+        try {
+            const path = this.getPath(file);
+
+            if(file.type == 'dir') {
+                fs.rmdirSync(path)
+            } else {
+                fs.unlinkSync(path)
+            }
+
+        } catch (error) {
+            throw Error('Error')
+        }
+    }
+
+    static getPath(file: TFile) {
+        return path.resolve(__dirname, '..', 'files', `${file.user}`, `${file.path}`)
+    }
 }

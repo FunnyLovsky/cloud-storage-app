@@ -119,7 +119,10 @@ export default class FileController{
             if(!file) {
                 return res.status(400).json({message: 'Файл не был найден'})
             }
-
+            
+            FileService.deleteFile(file);
+            await file.deleteOne();
+            return res.status(200).json({message: 'Файл был удален'})
         } catch (error) {
             return res.status(500).json({message: 'Ошибка при удалении файла'})
         }
