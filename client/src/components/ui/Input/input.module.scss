@@ -12,9 +12,15 @@
     border: none;
     outline: none;
     border-bottom: 3px solid $blue;
+    transition: .3s;
 
     &::placeholder {
         color: $blue;
+        transition: .3s;
+    }
+
+    &:focus::placeholder {
+        opacity: 0.7;
     }
 
 }
