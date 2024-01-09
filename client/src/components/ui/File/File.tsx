@@ -8,6 +8,7 @@ import AUDIO from '../../../assets/icons/music.svg';
 import VIDEO from '../../../assets/icons/video.svg';
 import Button from '../Button/Button';
 import { useActions, useAppSelector } from '../../../store/hooks';
+import { getSize } from '../../../utils/getSize';
 
 interface FileProps {
     file: IFile
@@ -60,7 +61,7 @@ const File: FC<FileProps> = ({file}) => {
             </div>
             <div className={style.item}>
                 <div className="date">{file.date.slice(0, 10)}</div>
-                <div className="size">{file.size} b</div>
+                <div className="size">{getSize(file.size)}</div>
                 <div className={style.buttons}>
                     {file.type !== 'dir' && (
                         <Button variant='secondary' onClick={(e: React.MouseEvent) => downloadFileHandler(e)}>DownLoad</Button>
