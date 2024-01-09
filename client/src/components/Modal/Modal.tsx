@@ -1,11 +1,12 @@
 import { FC, useState } from 'react';
-import Button from '../ui/Button/Button';
+import Button from '../../shared/ui/Button/Button';
 import Form from '../ui/Form/Form';
-import Input from '../ui/Input/Input';
+import Input from '../../shared/ui/Input/Input';
 import style from './modal.module.scss';
-import { useActions, useAppSelector } from '../../store/hooks';
 import { useDispatch } from 'react-redux';
 import { actionsFile } from '../../store/reducers/file';
+import { useAppSelector } from '../../shared/lib/hooks/useAppSelector';
+import { useActions } from '../../shared/lib/hooks/useActions';
 
 
 

@@ -1,12 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { BrowserRouter } from "react-router-dom";
 import './style/index.scss';
-import AppRouter from "./router/AppRouter";
-import { useActions, useAppSelector } from "./store/hooks";
+import AppRouter from "./providers/router/AppRouter";
+
 import { useEffect } from "react";
-import AuthLoader from "./components/ui/AuthLoader/AuthLoader";
+import AuthLoader from "../components/ui/AuthLoader/AuthLoader";
 import { useDispatch } from "react-redux";
-import { actions } from "./store/reducers/user";
+import { actions } from "../store/reducers/user";
+import { useAppSelector } from "../shared/lib/hooks/useAppSelector";
+import { useActions } from "../shared/lib/hooks/useActions";
 
 const App = () => {
     const {auth} = useActions();

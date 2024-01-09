@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../store/hooks';
-import Button from '../ui/Button/Button';
+
+import Button from '../../shared/ui/Button/Button';
 import style from './authError.module.scss';
-import { RouterName } from '../../router/router';
+import { RouterName } from '../../app/providers/router/router';
+import { useAppSelector } from '../../shared/lib/hooks/useAppSelector';
 
 const AuthError = () => {
 

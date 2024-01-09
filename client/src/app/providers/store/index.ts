@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import fileReducer from './reducers/file'
-import useReducer from "./reducers/user";
+import fileReducer from '../../../store/reducers/file'
+import useReducer from "../../../store/reducers/user";
 
 const rootReducer = combineReducers({
     fileReducer,

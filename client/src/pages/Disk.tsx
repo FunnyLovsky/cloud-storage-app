@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { useActions, useAppSelector } from "../store/hooks";
-import Container from "../components/ui/Container/Container";
+
+import Container from "../shared/ui/Container/Container";
 import DiskHeader from "../components/DiskHeader/DiskHeader";
+import { useAppSelector } from "../shared/lib/hooks/useAppSelector";
+import { useActions } from "../shared/lib/hooks/useActions";
 
 const Disk = () => {
 

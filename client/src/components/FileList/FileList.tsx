@@ -1,4 +1,5 @@
-import { useAppSelector } from '../../store/hooks';
+
+import { useAppSelector } from '../../shared/lib/hooks/useAppSelector';
 import File from '../ui/File/File';
 import FileLoader from '../ui/FileLoader/FileLoader';
 import style from './fileList.module.scss';

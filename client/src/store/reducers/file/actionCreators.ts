@@ -1,8 +1,8 @@
 import { actionsFile } from ".";
 import FileService from "../../../api/service/file";
 import { IFile } from "../../../models/IFile";
-import { sortFiles } from "../../../utils/sortFiles";
-import { AppDispatch } from "../../store";
+import { sortFiles } from "../../../shared/lib/utils/sortFiles";
+import { AppDispatch } from "../../../app/providers/store";
 
 
 const getFiles = (dirId: string) => 

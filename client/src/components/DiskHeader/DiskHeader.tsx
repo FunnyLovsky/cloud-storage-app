@@ -1,11 +1,13 @@
 import { useDispatch } from 'react-redux';
 import Modal from '../Modal/Modal';
-import Button from '../ui/Button/Button';
+import Button from '../../shared/ui/Button/Button';
 import style from './diskHeader.module.scss';
 import { actionsFile } from '../../store/reducers/file';
-import { useActions, useAppSelector } from '../../store/hooks';
+
 import { ChangeEvent, useState } from 'react';
 import FileList from '../FileList/FileList';
+import { useAppSelector } from '../../shared/lib/hooks/useAppSelector';
+import { useActions } from '../../shared/lib/hooks/useActions';
 
 const DiskHeader = () => {
     const dispatch = useDispatch();

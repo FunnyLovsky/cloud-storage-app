@@ -1,5 +1,5 @@
 import { actions } from ".";
-import { AppDispatch } from "../../store";
+import { AppDispatch } from "../../../app/providers/store";
 import AuthService from "../../../api/service/auth";
 
 

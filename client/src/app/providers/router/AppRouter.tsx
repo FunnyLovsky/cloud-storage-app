@@ -1,8 +1,9 @@
 
 import { Navigate, Route, Routes } from "react-router-dom";
-import NavBar from "../components/NavBar/NavBar"
+import NavBar from "../../../components/NavBar/NavBar"
 import { RouterName, privateRoutes, publicRoutes } from "./router";
-import { useAppSelector } from "../store/hooks";
+import { useAppSelector } from "../../../shared/lib/hooks/useAppSelector";
+
 
 
 

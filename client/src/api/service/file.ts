@@ -1,5 +1,5 @@
 import axios, {AxiosProgressEvent} from "axios";
-import { API_URL } from "../constans";
+import { API_URL } from "../../shared/api/urls";
 import { IFile } from "../../models/IFile";
 
 

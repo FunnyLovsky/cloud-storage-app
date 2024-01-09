@@ -1,4 +1,4 @@
-import Container from "../components/ui/Container/Container"
+import Container from "../shared/ui/Container/Container"
 
 const Main = () => {
     return(

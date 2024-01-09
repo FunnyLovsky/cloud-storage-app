@@ -1,13 +1,15 @@
 import { useState } from "react";
-import Button from "../ui/Button/Button";
-import Container from "../ui/Container/Container";
+import Button from "../../shared/ui/Button/Button";
+import Container from "../../shared/ui/Container/Container";
 import Form from "../ui/Form/Form";
-import Input from "../ui/Input/Input";
-import { useActions, useAppSelector } from "../../store/hooks";
+import Input from "../../shared/ui/Input/Input";
+
 import { actions } from "../../store/reducers/user";
 import { useDispatch } from "react-redux";
 import Loader from "../ui/Loader/Loader";
 import ErrorItem from "../ui/ErrorItem/ErrorItem";
+import { useActions } from "../../shared/lib/hooks/useActions";
+import { useAppSelector } from "../../shared/lib/hooks/useAppSelector";
 
 
 const FormReg = () => {

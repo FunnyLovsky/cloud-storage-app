@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ILogin, IRegistration } from "../../models/IAuth";
-import { API_URL } from "../constans";
-import { errorHandler } from "../../utils/errorHandler";
+import { API_URL } from "../../shared/api/urls";
+import { errorHandler } from "../../shared/lib/utils/errorHandler";
 
 export default class AuthService {
     static async registration(email: string, password: string, name: string) {

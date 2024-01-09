@@ -1,7 +1,7 @@
-import Disk from "../pages/Disk"
-import Login from "../pages/Login"
-import Main from "../pages/Main"
-import Registration from "../pages/Registration"
+import Disk from "../../../pages/Disk"
+import Login from "../../../pages/Login"
+import Main from "../../../pages/Main"
+import Registration from "../../../pages/Registration"
 
 interface IRoute {
     path: string,

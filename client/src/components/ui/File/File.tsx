@@ -1,14 +1,15 @@
 import { FC } from 'react';
 import { IFile } from '../../../models/IFile';
 import style from './file.module.scss';
-import FILE from '../../../assets/icons/file.svg';
-import DIR from '../../../assets/icons/dir.svg';
-import IMG from '../../../assets/icons/img.svg';
-import AUDIO from '../../../assets/icons/music.svg';
-import VIDEO from '../../../assets/icons/video.svg';
-import Button from '../Button/Button';
-import { useActions, useAppSelector } from '../../../store/hooks';
-import { getSize } from '../../../utils/getSize';
+import FILE from '../../../shared/assets/icons/file.svg';
+import DIR from '../../../shared/assets/icons/dir.svg';
+import IMG from '../../../shared/assets/icons/img.svg';
+import AUDIO from '../../../shared/assets/icons/music.svg';
+import VIDEO from '../../../shared/assets/icons/video.svg';
+import Button from '../../../shared/ui/Button/Button';
+import { getSize } from '../../../shared/lib/utils/getSize';
+import { useAppSelector } from '../../../shared/lib/hooks/useAppSelector';
+import { useActions } from '../../../shared/lib/hooks/useActions';
 
 interface FileProps {
     file: IFile
