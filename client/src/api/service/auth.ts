@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ILogin, IRegistration } from "../../models/IAuth";
+import { ILogin, IRegistration } from "../../entities/User/types/IAuth";
 import { API_URL } from "../../shared/api/urls";
 import { errorHandler } from "../../shared/lib/utils/errorHandler";
 

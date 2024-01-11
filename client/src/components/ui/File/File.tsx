@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IFile } from '../../../models/IFile';
+import { IFile } from '../../../entities/File/types/IFile';
 import style from './file.module.scss';
 import FILE from '../../../shared/assets/icons/file.svg';
 import DIR from '../../../shared/assets/icons/dir.svg';

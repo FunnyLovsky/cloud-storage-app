@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { IFile } from "../../../models/IFile"
+import { IFile } from "../../../entities/File/types/IFile"
 
 interface FileState {
     files: IFile[],

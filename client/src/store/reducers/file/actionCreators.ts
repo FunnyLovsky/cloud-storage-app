@@ -1,6 +1,6 @@
 import { actionsFile } from ".";
 import FileService from "../../../api/service/file";
-import { IFile } from "../../../models/IFile";
+import { IFile } from "../../../entities/File/types/IFile";
 import { sortFiles } from "../../../shared/lib/utils/sortFiles";
 import { AppDispatch } from "../../../app/providers/store";
 
